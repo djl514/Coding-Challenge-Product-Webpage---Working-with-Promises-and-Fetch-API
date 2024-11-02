@@ -26,7 +26,7 @@ function displayProducts(products){
         listItem.innerHTML = 
         `
         <ul><b>Product:</b> ${product.title} 
-        <br><b>Price:</b> $${(product.price).toFixed(2)}
+        <br><b>Price:</b> $${(product.price / 100).toFixed(2)}
         <br>
         <img src=${product.image} style= "width: 10%" alt=${product.title}  />
         </ul>
