@@ -1,7 +1,7 @@
 const productList = document.getElementById('productList');
 const container = document.getElementById('theProducts');
 
-// Fetch data from the supplier's product API
+// 2. Fetch data from the supplier's product API
 fetch('https://fakestoreapi.com/products')
     .then(response => {
         if (!response.ok) {
@@ -12,37 +12,28 @@ fetch('https://fakestoreapi.com/products')
     .then(products => {
         displayProducts(products);
     })
-    // 4. 
+    // 4. uses catch to handle errors
     .catch(error => {
         console.error('Failed to load products', error);
     });
 
-function displayImage(products){
-
-}
-
+//3. Display Product Details Dynamically
 function displayProducts(products){
     products.forEach(product => {
         const listItem = document.createElement('li');
-        listItem.textContent = `Product: ${product.title} - $${product.price}
-        Company: ${product.image}`;
+
+        //uses innerHTML to input data into the li elements
+        listItem.innerHTML = 
+        `
+        <ul><b>Product:</b> ${product.title} 
+        <br><b>Price:</b> $${(product.price).toFixed(2)}
+        <br>
+        <img src=${product.image} style= "width: 10%" alt=${product.title}  />
+        </ul>
+        `;
+
+        //adds the li element to the ul from index.html
         productList.appendChild(listItem);
         });
     }
 
-
-// function displayProducts(products){
-//     products.forEach(product => {
-//         const { name, price, company, image } = product.fields;
-//         const listItem = document.createElement('div');
-//         listItem.innerHTML = 
-//         `
-//             <img src="${product.image.url}" alt="${product.name}" />
-//             <h2>${product.name}</h2>
-//             <p>Company: ${product.company}</p>
-//             <p>Price: ${(product.price price / 100).toFixed(2)}</p>
-        
-//         `;
-//         productList.appendChild(listItem);
-//     });
-// }
